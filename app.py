@@ -1,4 +1,26 @@
 from flask import Flask
+# coding: utf-8
+from sqlalchemy import (
+    Boolean,
+    CHAR,
+    CheckConstraint,
+    Column,
+    DECIMAL,
+    Date,
+    DateTime,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Table,
+    Text,
+)
+from sqlalchemy.sql.sqltypes import NullType
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+metadata = Base.metadata
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "you-will-never-guess"
@@ -161,6 +183,9 @@ class AuthGroupPermission(db.Model):
 
     group = relationship("AuthGroup")
     permission = relationship("AuthPermission")
+
+
+
 
 
 @app.route("/login", methods=["GET", "POST"])
